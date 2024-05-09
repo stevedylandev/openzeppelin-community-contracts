@@ -1,0 +1,39 @@
+{
+  "name": "@openzeppelin/contracts-experimental",
+  "description": "Secure Smart Contract library for Solidity",
+  "version": "0.0.1",
+  "files": [
+    "/contracts/**/*.sol",
+    "!/contracts/mocks/**/*"
+  ],
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts-experimental.git"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart",
+    "contracts",
+    "security",
+    "zeppelin"
+  ],
+  "author": "OpenZeppelin Community <maintainers@openzeppelin.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts-experimental/issues"
+  },
+  "homepage": "https://openzeppelin.com/contracts/",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "chai": "^4.4.1",
+    "ethers": "^6.12.1",
+    "hardhat": "^2.22.3",
+    "yargs": "^17.7.2"
+  }
+}
