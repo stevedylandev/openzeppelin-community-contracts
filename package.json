@@ -1,7 +1,9 @@
 {
   "name": "@openzeppelin/contracts-experimental",
-  "description": "Secure Smart Contract library for Solidity",
   "version": "0.0.1",
+  "description": "Secure Smart Contract library for Solidity",
+  "author": "OpenZeppelin Community <maintainers@openzeppelin.org>",
+  "license": "MIT",
   "files": [
     "/contracts/**/*.sol",
     "!/contracts/mocks/**/*"
@@ -13,9 +15,13 @@
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '{contracts,test}/**/*.sol' --write",
     "test": "hardhat test"
   },
+  "homepage": "https://openzeppelin.com/contracts/",
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenZeppelin/openzeppelin-contracts-experimental.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts-experimental/issues"
   },
   "keywords": [
     "solidity",
@@ -25,12 +31,10 @@
     "security",
     "zeppelin"
   ],
-  "author": "OpenZeppelin Community <maintainers@openzeppelin.org>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts-experimental/issues"
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2"
   },
-  "homepage": "https://openzeppelin.com/contracts/",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
     "@nomicfoundation/hardhat-ethers": "^3.0.5",
@@ -40,9 +44,5 @@
     "prettier": "^3.2.5",
     "prettier-plugin-solidity": "^1.3.1",
     "yargs": "^17.7.2"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^5.0.2",
-    "@openzeppelin/contracts-upgradeable": "^5.0.2"
   }
 }
