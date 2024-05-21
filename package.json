@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "compile": "hardhat compile",
+    "lint": "prettier --log-level warn --ignore-path .gitignore '{contracts,test}/**/*.sol' --check",
+    "lint:fix": "prettier --log-level warn --ignore-path .gitignore '{contracts,test}/**/*.sol' --write",
     "test": "hardhat test"
   },
   "repository": {
@@ -34,6 +36,8 @@
     "chai": "^4.4.1",
     "ethers": "^6.12.1",
     "hardhat": "^2.22.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-solidity": "^1.3.1",
     "yargs": "^17.7.2"
   },
   "dependencies": {

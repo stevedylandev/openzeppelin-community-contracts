@@ -2,20 +2,20 @@
 
 pragma solidity ^0.8.20;
 
-import { IAuthority } from "@openzeppelin/contracts/access/manager/IAuthority.sol";
-import { Masks } from "../utils/Masks.sol";
+import {IAuthority} from "@openzeppelin/contracts/access/manager/IAuthority.sol";
+import {Masks} from "../utils/Masks.sol";
 
 contract AccessManagerLight is IAuthority {
     using Masks for *;
 
-    uint8      public constant  ADMIN       = 0x00;
-    uint8      public constant  PUBLIC      = 0xFF;
-    Masks.Mask public immutable ADMIN_MASK  = ADMIN.toMask();
+    uint8 public constant ADMIN = 0x00;
+    uint8 public constant PUBLIC = 0xFF;
+    Masks.Mask public immutable ADMIN_MASK = ADMIN.toMask();
     Masks.Mask public immutable PUBLIC_MASK = PUBLIC.toMask();
 
-    mapping(address =>                   Masks.Mask ) private _permissions;
+    mapping(address => Masks.Mask) private _permissions;
     mapping(address => mapping(bytes4 => Masks.Mask)) private _restrictions;
-    mapping(uint8   =>                   Masks.Mask ) private _admin;
+    mapping(uint8 => Masks.Mask) private _admin;
 
     event GroupAdded(address indexed user, uint8 indexed group);
     event GroupRemoved(address indexed user, uint8 indexed group);
@@ -83,7 +83,11 @@ contract AccessManagerLight is IAuthority {
     }
 
     // Requirement management
-    function setRequirements(address target, bytes4[] calldata selectors, uint8[] calldata groups) public onlyRole(ADMIN_MASK) {
+    function setRequirements(
+        address target,
+        bytes4[] calldata selectors,
+        uint8[] calldata groups
+    ) public onlyRole(ADMIN_MASK) {
         Masks.Mask mask = groups.toMask();
         for (uint256 i = 0; i < selectors.length; ++i) {
             _setRequirements(target, selectors[i], mask);
