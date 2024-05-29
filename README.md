@@ -4,11 +4,18 @@
 
 ## Overview
 
-TODO
+This repository contains contracts and libraries in the following catogories:
+
+- extensions and modules compatible with contracts in the [@openzeppelin/contracts](https://github.com/OpenZeppelin/openzeppelin-contracts) package;
+- alternative implementation of interfaces defined in the [@openzeppelin/contracts](https://github.com/OpenZeppelin/openzeppelin-contracts) package;
+- building blocks for developpers;
+- prototypes in general.
+
+Code is provided by the openzeppelin solidity team, as well as by community contributors, for other developpers to review, discuss, itterate on, and potentially use (see [the Security section](#security)  before you do).
 
 ## Security
 
-Contract in this repo is provided as is, with no particular guarantees. In particular:
+Contracts and libraries in this repository are provided as is, with no particular guarantees. In particular:
 
 - Code in this repository is not audited. Maintainers will review the code to the extend that the is no obviously malicious code published, but bugs may be present in this code that may lead to priviledge escalation or loss of funds. Any code taken from this repository should be audited before being used in production.
 
