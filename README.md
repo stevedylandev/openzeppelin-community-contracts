@@ -3,7 +3,7 @@
 [![Forum](https://img.shields.io/badge/forum-%F0%9F%92%AC-yellow)](https://docs.openzeppelin.com/contracts)
 
 > [!IMPORTANT]
-> This repository includes experimental code that has not been audited and may introduce breaking changes at any time. We recommend
+> This repository includes community-curated and experimental code that has not been audited and may introduce breaking changes at any time. We recommend
 > reviewing the [Security](#security) section before using any code from this repository.
 
 ## Overview
@@ -13,6 +13,7 @@ This repository contains contracts and libraries in the following categories:
 - Extensions and modules compatible with contracts in the [@openzeppelin/contracts](https://github.com/OpenZeppelin/openzeppelin-contracts) package
 - Alternative implementation of interfaces defined in the [@openzeppelin/contracts](https://github.com/OpenZeppelin/openzeppelin-contracts) package
 - Contracts with third-party integrations
+- Contracts built by community members, that align with OpenZeppelin offerings
 - General prototypes and experiments
 
 Code is provided by the OpenZeppelin Contracts team, as well as by community contributors, for other developers to review, discuss, iterate on, and potentially use.
