@@ -40,7 +40,7 @@ OpenZeppelin Contracts exists thanks to its contributors. There are many ways yo
 
 ### CODEOWNERS
 
-Contributions to this repository require approval from a code owner (see [./.github/CODEOWNERS]). They are responsible for reviewing contributions to their respective areas of the codebase and ensuring that they meet the project's standards for quality and security.
+Contributions to this repository require approval from a code owner (see [CODEOWNERS](./.github/CODEOWNERS)). They are responsible for reviewing contributions to their respective areas of the codebase and ensuring that they meet the project's standards for quality and security.
 
 ## License
 
