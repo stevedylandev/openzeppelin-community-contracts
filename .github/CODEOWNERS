@@ -8,3 +8,6 @@
 
 # These owners will be the default owners for everything in the repo.
 * @OpenZeppelin/contracts
+
+## Owners of the OpenZeppelin Community Contracts CODEOWNERS file
+/.github/CODEOWNERS @OpenZeppelin/contracts
