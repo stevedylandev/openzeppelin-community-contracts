@@ -44,6 +44,16 @@ describe('Masks', function () {
     }
   });
 
+  describe('get', function () {
+    it('returns group for empty mask', async function () {
+      expect(await this.mock.$get(ethers.toBeHex(0, 32), 0)).to.be.false;
+    });
+
+    it('returns group for non-empty mask', async function () {
+      expect(await this.mock.$get(ethers.toBeHex(1, 32), 0)).to.be.true;
+    });
+  });
+
   describe('isEmpty', function () {
     it('returns true for empty mask', async function () {
       expect(await this.mock.$isEmpty(ethers.toBeHex(0, 32))).to.be.true;
