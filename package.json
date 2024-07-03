@@ -13,7 +13,7 @@
     "compile": "hardhat compile",
     "lint": "prettier --log-level warn --ignore-path .gitignore '{contracts,test}/**/*.sol' --check",
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '{contracts,test}/**/*.sol' --write",
-    "coverage": "hardhat coverage",
+    "coverage": "scripts/checks/coverage.sh",
     "test": "hardhat test"
   },
   "homepage": "https://openzeppelin.com/contracts/",
