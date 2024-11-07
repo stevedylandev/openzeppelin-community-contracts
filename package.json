@@ -9,7 +9,7 @@
     "!/contracts/mocks/**/*"
   ],
   "scripts": {
-    "prepare": "git config --local core.hooksPath .githooks",
+    "prepare": "scripts/prepare.sh",
     "compile": "hardhat compile",
     "lint": "npm run lint:js && npm run lint:sol",
     "lint:fix": "npm run lint:js:fix && npm run lint:sol:fix",
