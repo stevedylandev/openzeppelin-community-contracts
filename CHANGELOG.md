@@ -1,3 +1,8 @@
+## 06-11-2024
+
+* `ERC7739Utils`: Add a library that implements a defensive rehashing mechanism to prevent replayability of smart contract signatures based on the ERC-7739.
+* `ERC7739Signer`: An abstract contract to validate signatures following the rehashing scheme from `ERC7739Utils`.
+
 ## 15-10-2024
 
 * `ERC20Collateral`: Extension of ERC-20 that limits the supply of tokens based on a collateral and time-based expiration.
