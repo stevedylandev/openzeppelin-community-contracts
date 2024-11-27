@@ -15,6 +15,7 @@ require('@nomicfoundation/hardhat-chai-matchers');
 require('@nomicfoundation/hardhat-ethers');
 require('hardhat-exposed');
 require('solidity-coverage');
+require('solidity-docgen');
 require('./hardhat/remappings');
 
 module.exports = {
