@@ -34,4 +34,5 @@ module.exports = {
       hardfork: argv.hardfork,
     },
   },
+  docgen: require('./docs/config'),
 };

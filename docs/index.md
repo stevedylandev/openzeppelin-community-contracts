@@ -1,130 +1,5 @@
 # Solidity API
 
-## MyStablecoinAllowlist
-
-### constructor
-
-```solidity
-constructor(address initialAuthority) public
-```
-
-### allowUser
-
-```solidity
-function allowUser(address user) public
-```
-
-### disallowUser
-
-```solidity
-function disallowUser(address user) public
-```
-
-## ERC20Allowlist
-
-_Extension of {ERC20} that allows to implement an allowlist
-mechanism that can be managed by an authorized account with the
-{_disallowUser} and {_allowUser} functions.
-
-The allowlist provides the guarantee to the contract owner
-(e.g. a DAO or a well-configured multisig) that any account won't be
-able to execute transfers or approvals to other entities to operate
-on its behalf if {_allowUser} was not called with such account as an
-argument. Similarly, the account will be disallowed again if
-{_disallowUser} is called._
-
-### _allowed
-
-```solidity
-mapping(address => bool) _allowed
-```
-
-_Allowed status of addresses. True if allowed, False otherwise._
-
-### UserAllowed
-
-```solidity
-event UserAllowed(address user)
-```
-
-_Emitted when a `user` is allowed to transfer and approve._
-
-### UserDisallowed
-
-```solidity
-event UserDisallowed(address user)
-```
-
-_Emitted when a user is disallowed._
-
-### ERC20Disallowed
-
-```solidity
-error ERC20Disallowed(address user)
-```
-
-_The operation failed because the user is not allowed._
-
-### allowed
-
-```solidity
-function allowed(address account) public virtual returns (bool)
-```
-
-_Returns the allowed status of an account._
-
-### _allowUser
-
-```solidity
-function _allowUser(address user) internal virtual returns (bool)
-```
-
-_Allows a user to receive and transfer tokens, including minting and burning._
-
-### _disallowUser
-
-```solidity
-function _disallowUser(address user) internal virtual returns (bool)
-```
-
-_Disallows a user from receiving and transferring tokens, including minting and burning._
-
-### _update
-
-```solidity
-function _update(address from, address to, uint256 value) internal virtual
-```
-
-_See {ERC20-_update}._
-
-### _approve
-
-```solidity
-function _approve(address owner, address spender, uint256 value, bool emitEvent) internal virtual
-```
-
-_See {ERC20-_approve}._
-
-## MyStablecoin
-
-### constructor
-
-```solidity
-constructor(address initialAuthority) public
-```
-
-### allowUser
-
-```solidity
-function allowUser(address user) public
-```
-
-### disallowUser
-
-```solidity
-function disallowUser(address user) public
-```
-
 ## AccessManagerLight
 
 _Light version of an AccessManager contract that defines `bytes8` roles
@@ -323,6 +198,26 @@ WARNING: Implementing a signature validation algorithm is a security-sensitive o
 cryptographic verification. It is important to review and test thoroughly before deployment. Consider
 using one of the signature verification libraries ({ECDSA}, {P256} or {RSA})._
 
+## MyStablecoinAllowlist
+
+### constructor
+
+```solidity
+constructor(address initialAuthority) public
+```
+
+### allowUser
+
+```solidity
+function allowUser(address user) public
+```
+
+### disallowUser
+
+```solidity
+function disallowUser(address user) public
+```
+
 ## ERC20CollateralMock
 
 ### constructor
@@ -398,6 +293,91 @@ _Returns the current implementation address according to ERC-1967's implementati
 IMPORTANT: The way this function identifies whether the implementation is a beacon, is by checking
 if it implements the {IBeacon-implementation} function. Consider that an actual implementation could
 define this function, mistakenly identifying it as a beacon._
+
+## ERC20Allowlist
+
+_Extension of {ERC20} that allows to implement an allowlist
+mechanism that can be managed by an authorized account with the
+{_disallowUser} and {_allowUser} functions.
+
+The allowlist provides the guarantee to the contract owner
+(e.g. a DAO or a well-configured multisig) that any account won't be
+able to execute transfers or approvals to other entities to operate
+on its behalf if {_allowUser} was not called with such account as an
+argument. Similarly, the account will be disallowed again if
+{_disallowUser} is called._
+
+### _allowed
+
+```solidity
+mapping(address => bool) _allowed
+```
+
+_Allowed status of addresses. True if allowed, False otherwise._
+
+### UserAllowed
+
+```solidity
+event UserAllowed(address user)
+```
+
+_Emitted when a `user` is allowed to transfer and approve._
+
+### UserDisallowed
+
+```solidity
+event UserDisallowed(address user)
+```
+
+_Emitted when a user is disallowed._
+
+### ERC20Disallowed
+
+```solidity
+error ERC20Disallowed(address user)
+```
+
+_The operation failed because the user is not allowed._
+
+### allowed
+
+```solidity
+function allowed(address account) public virtual returns (bool)
+```
+
+_Returns the allowed status of an account._
+
+### _allowUser
+
+```solidity
+function _allowUser(address user) internal virtual returns (bool)
+```
+
+_Allows a user to receive and transfer tokens, including minting and burning._
+
+### _disallowUser
+
+```solidity
+function _disallowUser(address user) internal virtual returns (bool)
+```
+
+_Disallows a user from receiving and transferring tokens, including minting and burning._
+
+### _update
+
+```solidity
+function _update(address from, address to, uint256 value) internal virtual
+```
+
+_See {ERC20-_update}._
+
+### _approve
+
+```solidity
+function _approve(address owner, address spender, uint256 value, bool emitEvent) internal virtual
+```
+
+_See {ERC20-_approve}._
 
 ## ERC20Blocklist
 
