@@ -1,3 +1,22 @@
+## 09-09-2025
+
+- `DKIMRegistry`: Add implementation of ERC-7969 to enable onchain verification of DomainKeys Identified Mail (DKIM) signatures.
+
+## 17-08-2025
+
+- `ERC20Freezable`: Add extension of ERC-20 that allows freezing specific amounts of tokens per account, preventing transfers until unfrozen while maintaining full visibility of balances.
+- `ERC20Restricted`: Add extension of ERC-20 that implements user account transfer restrictions through allowlist/blocklist functionality based on ERC-7943.
+- `ERC20uRWA`: Add comprehensive ERC-20 extension implementing ERC-7943 specification for unified Real World Assets (uRWAs) with freezing, restrictions, and forced transfer capabilities.
+- `ERC20Custodian`: Deprecate in favor of `ERC20Freezable`.
+- `ERC20Allowlist`, `ERC20Blocklist`: Deprecate in favor of `ERC20Restricted`.
+
+## 14-08-2025
+
+- `ZKEmailUtils`: Add `tryDecodeEmailProof` function for safe calldata decoding with comprehensive bounds checking and validation for `EmailProof` struct.
+- `ZKEmailUtils`: Update `isValidZKEmail` to receive `EmailProof` struct directly instead of `EmailAuthMsg` struct.
+- `SignerZKEmail`: Remove `templateId` functionality and switch from `EmailAuthMsg` to direct `EmailProof` validation for streamlined signature verification.
+- `ERC7913ZKEmailVerifier`: Remove `templateId` from signature validation logic and update `_decodeKey` function to directly decode `EmailProof` struct.
+
 ## 09-08-2025
 
 - `ZKEmailUtils`: Simplify library implementation and remove `Verifier.sol` indirection for cleaner integration with a Groth16Verifier.
@@ -155,7 +174,7 @@
 
 - `ERC20Allowlist`: Extension of ERC-20 that implements an allow list to enable token transfers, disabled by default.
 - `ERC20Blocklist`: Extension of ERC-20 that implements a block list to restrict token transfers, enabled by default.
-- `ERC20Custodian`: Extension of ERC-20 that allows a custodian to freeze user's tokens by a certain amount.
+- : Deprecate in favor of `ERC20Freezable`.: Extension of ERC-20 that allows a custodian to freeze user's tokens by a certain amount.
 
 ## 03-10-2024
 
