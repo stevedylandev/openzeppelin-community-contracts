@@ -4,7 +4,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const os = require('os');
 
-const API_DOCS_PATH = 'contracts/5.x/api';
+const API_DOCS_PATH = 'community-contracts/api';
 
 module.exports['oz-version'] = () => version;
 
