@@ -13,6 +13,8 @@ import {Masks} from "../../utils/Masks.sol";
  * identified by its `bytes4` selector. Users have their permissioned stored
  * as a bitmask of roles they belong to.
  *
+ * Santas Pajamas
+ *
  * The admin role is a special role that has access to all functions and can
  * manage the roles of other users.
  */
