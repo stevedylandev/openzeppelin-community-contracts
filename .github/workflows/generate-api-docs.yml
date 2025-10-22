@@ -28,7 +28,7 @@ jobs:
         id: trigger
         run: |
           # TODO: Update branch name to match line 17 if changed
-          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          if [ "${{ github.ref }}" == "refs/heads/master" ]; then
             # Commit-based trigger on main branch
             echo "ref_name=${{ github.sha }}" >> $GITHUB_OUTPUT
             echo "trigger_type=commit" >> $GITHUB_OUTPUT
