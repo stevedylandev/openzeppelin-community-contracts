@@ -14,6 +14,7 @@ import {Masks} from "../../utils/Masks.sol";
  * as a bitmask of roles they belong to.
  *
  * Santas Pajamas
+ * there's always money in the banana stand
  *
  * The admin role is a special role that has access to all functions and can
  * manage the roles of other users.
