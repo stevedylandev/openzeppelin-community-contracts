@@ -62,5 +62,5 @@ module.exports = {
     currency: 'USD',
     coinmarketcap: argv.coinmarketcap,
   },
-  docgen: require('./docs/config-md'),
+  docgen: require('./docs/config'),
 };
