@@ -89,19 +89,6 @@ function getAllLinks(items, currentPage) {
     const pagePath = item.__item_context.page.replace(/\.mdx$/, '');
     const linkPath = generateLinkPath(pagePath, currentPagePath, item.anchor);
 
-    // Generate xref keys for legacy compatibility
-    res[`xref-${item.anchor}`] = linkPath;
-
-    // Generate original case xref keys
-    if (item.__item_context && item.__item_context.contract) {
-      let originalAnchor = item.__item_context.contract.name + '-' + item.name;
-      if ('parameters' in item) {
-        const signature = item.parameters.parameters.map(v => v.typeName.typeDescriptions.typeString).join(',');
-        originalAnchor += slug('(' + signature + ')');
-      }
-      res[`xref-${originalAnchor}`] = linkPath;
-    }
-
     res[slug(item.fullName)] = `[\`${item.fullName}\`](${linkPath})`;
   }
 
@@ -161,52 +148,6 @@ function processReferences(content, links) {
     return resolvedRef || match;
   });
 
-  // Handle AsciiDoc-style {xref-...}[text] patterns
-  result = result.replace(/\{(xref-[-._a-z0-9]+)\}\[([^\]]*)\]/gi, (match, key, linkText) => {
-    const replacement = links[key];
-    return replacement ? `[${linkText}](${replacement})` : match;
-  });
-
-  // Handle cross-references in format {Contract-function-parameters}
-  result = result.replace(
-    /\{([A-Z][a-zA-Z0-9]*)-([a-zA-Z_][a-zA-Z0-9]*)-([^-}]+)\}/g,
-    (match, contract, func, params) => {
-      const commaParams = params
-        .replace(/-bytes\[\]/g, ',bytes[]')
-        .replace(/-uint[0-9]*/g, ',uint$1')
-        .replace(/-address/g, ',address')
-        .replace(/-bool/g, ',bool')
-        .replace(/-string/g, ',string');
-      const slugifiedParams = commaParams.replace(/\W/g, '-');
-      const xrefKey = `xref-${contract}-${func}-${slugifiedParams}`;
-      const replacement = links[xrefKey];
-      if (replacement) {
-        return `[\`${contract}.${func}\`](${replacement})`;
-      }
-      return match;
-    },
-  );
-
-  // Handle cross-references in format {Contract-function-parameters}
-  result = result.replace(
-    /\{([A-Z][a-zA-Z0-9]*)-([a-zA-Z_][a-zA-Z0-9]*)-([^}]+)\}/g,
-    (match, contract, func, params) => {
-      const commaParams = params
-        .replace(/-bytes\[\]/g, ',bytes[]')
-        .replace(/-uint[0-9]*/g, ',uint$1')
-        .replace(/-address/g, ',address')
-        .replace(/-bool/g, ',bool')
-        .replace(/-string/g, ',string');
-      const slugifiedParams = `(${commaParams})`.replace(/\W/g, '-');
-      const xrefKey = `xref-${contract}-${func}${slugifiedParams}`;
-      const replacement = links[xrefKey];
-      if (replacement) {
-        return `[\`${contract}.${func}\`](${replacement})`;
-      }
-      return match;
-    },
-  );
-
   // Replace {link-key} placeholders with markdown links
   result = result.replace(/\{([-._a-z0-9]+)\}/gi, (match, key) => {
     const replacement = findBestMatch(key, links);
@@ -224,17 +165,9 @@ function processReferences(content, links) {
 }
 
 function resolveReference(refId, links) {
-  // Try direct match first
-  const directKey = `xref-${refId.replace(/\./g, '-')}`;
-  if (links[directKey]) {
-    const parts = refId.split('.');
-    const displayText = parts.length > 1 ? `${parts[0]}.${parts[1]}` : refId;
-    return `[\`${displayText}\`](${links[directKey]})`;
-  }
-
-  // Try fuzzy matching
+  // Try fuzzy matching for fullName keys
   const matchingKeys = Object.keys(links).filter(key => {
-    const normalizedKey = key.replace('xref-', '').toLowerCase();
+    const normalizedKey = key.toLowerCase();
     const normalizedRef = refId.replace(/\./g, '-').toLowerCase();
     return normalizedKey.includes(normalizedRef) || normalizedRef.includes(normalizedKey);
   });
@@ -273,9 +206,7 @@ function findBestMatch(key, links) {
     }
 
     if (matchingKeys.length > 0) {
-      const nonXrefMatches = matchingKeys.filter(k => !k.startsWith('xref-'));
-      const bestMatch = nonXrefMatches.length > 0 ? nonXrefMatches[0] : matchingKeys[0];
-      replacement = links[bestMatch];
+      replacement = links[matchingKeys[0]];
     }
   }
 
