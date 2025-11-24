@@ -123,7 +123,7 @@ Returns whether a DKIM key hash is valid for a given domain.
 
 Sets a DKIM key hash as valid for a domain. Internal version without access control.
 
-Emits a [`IDKIMRegistry.KeyHashRegistered`](../interfaces#IDKIMRegistry-KeyHashRegistered-bytes32-bytes32-) event.
+Emits a [`IDKIMRegistry.KeyHashRegistered`](/community-contracts/api/interfaces#IDKIMRegistry-KeyHashRegistered-bytes32-bytes32-) event.
 
 <Callout>
 This function does not validate that keyHash is non-zero. Consider adding
@@ -148,7 +148,7 @@ validation in derived contracts if needed.
 Sets multiple DKIM key hashes as valid for a domain in a single transaction.
 Internal version without access control.
 
-Emits a [`IDKIMRegistry.KeyHashRegistered`](../interfaces#IDKIMRegistry-KeyHashRegistered-bytes32-bytes32-) event for each key hash.
+Emits a [`IDKIMRegistry.KeyHashRegistered`](/community-contracts/api/interfaces#IDKIMRegistry-KeyHashRegistered-bytes32-bytes32-) event for each key hash.
 
 <Callout>
 This function does not validate that the keyHashes array is non-empty.
@@ -173,7 +173,7 @@ Consider adding validation in derived contracts if needed.
 Revokes a DKIM key hash for a domain, making it invalid.
 Internal version without access control.
 
-Emits a [`IDKIMRegistry.KeyHashRevoked`](../interfaces#IDKIMRegistry-KeyHashRevoked-bytes32-) event.
+Emits a [`IDKIMRegistry.KeyHashRevoked`](/community-contracts/api/interfaces#IDKIMRegistry-KeyHashRevoked-bytes32-) event.
 
 </div>
 </div>
