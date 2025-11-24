@@ -16,7 +16,7 @@ import {
  * can be executed with custom rules by implementing the {_validateExecution} function in
  * derived contracts.
  *
- * <Callout>
+ * <Callout type="idea">
  * This is a simplified executor that directly executes operations without delay or expiration
  * mechanisms. For a more advanced implementation with time-delayed execution patterns and
  * security features, see {ERC7579DelayedExecutor}.
@@ -69,7 +69,7 @@ abstract contract ERC7579Executor is IERC7579Module {
      *  }
      *```
      *
-     * <Callout>
+     * <Callout type="idea">
      * Pack extra data in the `data` arguments (e.g. a signature) to be used in the
      * validation process. Calldata can be sliced to extract it and return only the
      * execution calldata.

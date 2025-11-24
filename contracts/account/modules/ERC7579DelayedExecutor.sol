@@ -38,7 +38,7 @@ import {ERC7579Executor} from "./ERC7579Executor.sol";
  * and {_validateCancel} functions. These functions can be overridden to implement custom
  * authorization logic, such as requiring specific signers or roles.
  *
- * <Callout>
+ * <Callout type="idea">
  * Use {_scheduleAt} to schedule operations at a specific points in time. This is
  * useful to pre-schedule operations for non-deployed accounts (e.g. subscriptions).
  * </Callout>

@@ -13,7 +13,7 @@ import {ERC7579Multisig} from "./ERC7579Multisig.sol";
  * multisig by requiring each new signer to provide a valid signature confirming their
  * consent to be added. Each signer must sign an EIP-712 message to confirm their addition.
  *
- * <Callout>
+ * <Callout type="idea">
  * Use this module to ensure that all guardians in a social recovery or multisig setup have
  * explicitly agreed to their roles.
  * </Callout>
