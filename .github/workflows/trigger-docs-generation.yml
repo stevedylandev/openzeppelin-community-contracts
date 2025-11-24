@@ -13,7 +13,7 @@ name: Trigger API Documentation Generation
 
 env:
   WORKFLOW_NAME: 'generate-api-docs-community-contracts'
-  TARGET_BRANCH: 'main'  # TODO: Customize branch name if needed
+  TARGET_BRANCH: 'master'
 
 on:
   push:
