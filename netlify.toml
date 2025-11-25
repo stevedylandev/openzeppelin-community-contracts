@@ -1,6 +1,6 @@
 [build]
 command = "pnpm run docs"
-publish = ".next"
+publish = "docs/docs/.next"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
