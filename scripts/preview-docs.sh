@@ -11,8 +11,8 @@ git clone --depth 1 https://github.com/OpenZeppelin/docs.git
 cp -r $REPO_DOCS/modules/api/pages/*  $COMPANY_DOCS/content/community-contracts/api
 cp -r $REPO_DOCS/modules/api/examples $COMPANY_DOCS/content/community-contracts/api 
 cd $COMPANY_DOCS
-npm i
-npm run build
+pnpm i
+pnpm run build
 NETLIFY=$ROOT/build/site
 rm -rf $NETLIFY
 mkdir -p $NETLIFY
