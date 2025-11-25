@@ -12,7 +12,7 @@ cp -r $DOCS/modules/api/pages/*  $OZ_DOCS/content/community-contracts/api
 cp -r $DOCS/modules/api/examples $OZ_DOCS/content/community-contracts/api 
 cd $OZ_DOCS
 pnpm i
-if [ "$WATCH" = "true" ]; then
+if [ "${WATCH:-false}" = "true" ]; then
   pnpm run dev
 else
   pnpm run build
