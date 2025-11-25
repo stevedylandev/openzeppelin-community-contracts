@@ -13,8 +13,4 @@ cp -r $REPO_DOCS/modules/api/examples $COMPANY_DOCS/content/community-contracts/
 cd $COMPANY_DOCS
 pnpm i
 pnpm run build
-NETLIFY=$ROOT/build/site
-rm -rf $NETLIFY
-mkdir -p $NETLIFY
-cp -r $COMPANY_DOCS/.next/* $NETLIFY
 # npm run dev
