@@ -164,6 +164,10 @@ function processReferences(content, links) {
     return replacement || match;
   });
 
+  // Replace any "{key}" found in text with link. e.g:
+  // "* {AccessManagerLight}: A simpler [...]" -> "* [`AccessManagerLight`](#AccessManagerLight): A simpler [...]")
+  Object.keys(links).map(key => (result = result.replace(new RegExp(`\\{${key}\\}`, 'g'), links[key])));
+
   return cleanupContent(result);
 }
 
