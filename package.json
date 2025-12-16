@@ -48,6 +48,7 @@
   ],
   "devDependencies": {
     "@openzeppelin/contracts": "file:lib/@openzeppelin-contracts",
+    "chokidar-cli": "^3.0.0",
     "husky": "^9.1.7"
   },
   "lint-staged": {

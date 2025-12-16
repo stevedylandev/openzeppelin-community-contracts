@@ -3,22 +3,55 @@
 set -euo pipefail
 shopt -s globstar
 
+cd "$(dirname "$0")/.."
+ROOT="$(pwd)"
+
 OUTDIR="$(node -p 'require("./docs/config.js").outputDir')"
 
 if [ ! -d node_modules ]; then
   npm ci
 fi
 
-rm -rf "$OUTDIR"
-
-hardhat docgen
-
-# copy examples and adjust imports
 examples_source_dir="contracts/mocks/docs"
 examples_target_dir="docs/modules/api/examples"
 
-for f in "$examples_source_dir"/**/*.sol; do
-  name="${f/#"$examples_source_dir/"/}"
-  mkdir -p "$examples_target_dir/$(dirname "$name")"
-  sed -Ee '/^import/s|"(\.\./)+|"@openzeppelin/community-contracts/|' "$f" > "$examples_target_dir/$name"
-done
+prepare_once() {
+  rm -rf "$OUTDIR"
+  hardhat docgen
+
+  rm -rf "$examples_target_dir"
+  mkdir -p "$examples_target_dir"
+
+  for f in "$examples_source_dir"/**/*.sol; do
+    name="${f/#"$examples_source_dir/"/}"
+    mkdir -p "$examples_target_dir/$(dirname "$name")"
+    sed -Ee '/^import/s|"(\.\./)+|"@openzeppelin/community-contracts/|' "$f" > "$examples_target_dir/$name"
+  done
+}
+
+# Entry point used by the watcher (no watcher spawning).
+if [ "${PREPARE_ONCE:-false}" = "true" ]; then
+  prepare_once
+  exit 0
+fi
+
+# Always run once.
+prepare_once
+
+# Watch mode: keep regenerating in the background and return so oz-docs can start Next.
+if [ "${WATCH:-false}" = "true" ]; then
+  CHOKIDAR_BIN="$ROOT/node_modules/.bin/chokidar"
+  if [ ! -x "$CHOKIDAR_BIN" ]; then
+    echo "error: chokidar-cli not found (run: npm i -D chokidar-cli)" >&2
+    exit 1
+  fi
+
+  "$CHOKIDAR_BIN" \
+    "contracts/**/*.{sol,mdx,adoc}" \
+    "docs/config.js" \
+    --ignoreInitial \
+    --throttle 100 \
+    --debounce 300 \
+    -c "PREPARE_ONCE=true WATCH=false bash \"$ROOT/scripts/prepare-docs.sh\"" \
+    >/dev/null 2>&1 &
+fi
