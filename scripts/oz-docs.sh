@@ -6,31 +6,39 @@ cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
 DOCS="$ROOT/docs"
 OZ_DOCS="$DOCS/oz-docs"
+OUTDIR="$OZ_DOCS/content/community-contracts/api"
 
-API_TARGET="$OZ_DOCS/content/community-contracts/api"
-
-sync_once() {
-  mkdir -p "$API_TARGET"
-  rsync -a --delete "$DOCS/modules/api/pages/" "$API_TARGET/"
-  mkdir -p "$API_TARGET/examples"
-  rsync -a --delete "$DOCS/modules/api/examples/" "$API_TARGET/examples/"
+# Init the docs project locally by cloning and installing it.
+init() {
+  rm -rf "$OZ_DOCS"
+  cd "$DOCS"
+  git clone --branch main https://github.com/OpenZeppelin/docs.git oz-docs
+  cd $OZ_DOCS
+  pnpm i
 }
 
-# Entry point used by the watcher (no clone/install/dev).
+# Sync the locally prepared docs into the local docs project.
+sync() {
+  mkdir -p "$OUTDIR"
+  rsync -a --delete "$DOCS/modules/api/pages/" "$OUTDIR/"
+  mkdir -p "$OUTDIR/examples"
+  rsync -a --delete "$DOCS/modules/api/examples/" "$OUTDIR/examples/"
+}
+
+# Entry point used by the watcher. (no init).
 if [ "${SYNC_ONCE:-false}" = "true" ]; then
-  sync_once
+  echo "[oz-docs] changes detected, syncing…"
+  sync
   exit 0
 fi
 
-rm -rf "$OZ_DOCS"
-cd "$DOCS"
-git clone --branch main https://github.com/OpenZeppelin/docs.git oz-docs
+# Always run once.
+init
 
-sync_once
+# Always run once.
+sync
 
-cd "$OZ_DOCS"
-pnpm i
-
+# Watch mode: keep regenerating in the background.
 if [ "${WATCH:-false}" = "true" ]; then
   CHOKIDAR_BIN="$ROOT/node_modules/.bin/chokidar"
   if [ ! -x "$CHOKIDAR_BIN" ]; then
