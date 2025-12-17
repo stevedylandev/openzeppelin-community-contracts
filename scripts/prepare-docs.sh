@@ -48,7 +48,7 @@ if [ "${WATCH:-false}" = "true" ]; then
   fi
 
   "$CHOKIDAR_BIN" \
-    "contracts/**/*.{sol,mdx,adoc}" \
+    "contracts/**/*.{sol,mdx}" \
     "docs/config.js" \
     --ignoreInitial \
     --throttle 200 \
