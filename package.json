@@ -11,7 +11,7 @@
   "scripts": {
     "compile": "hardhat compile",
     "clean": "hardhat clean && rimraf build contracts/build",
-    "docs": "npm run prepare-docs && npm run oz-docs",
+    "docs": "npm run oz-docs",
     "docs:watch": "WATCH=true npm run docs",
     "prepare": "husky",
     "prepare-docs": "scripts/prepare-docs.sh",
