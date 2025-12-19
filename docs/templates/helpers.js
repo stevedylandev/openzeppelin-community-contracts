@@ -7,7 +7,7 @@ module.exports['oz-version'] = () => version;
 
 module.exports['readme-path'] = opts => {
   const pageId = opts.data.root.id;
-  const basePath = pageId.replace(/\.(adoc|mdx)$/, '');
+  const basePath = pageId.replace(/\.(mdx)$/, '');
   return 'contracts/' + basePath + '/README.mdx';
 };
 
@@ -324,7 +324,7 @@ function processCallouts(content) {
 
 module.exports.title = opts => {
   const pageId = opts.data.root.id;
-  const basePath = pageId.replace(/\.(adoc|mdx)$/, '');
+  const basePath = pageId.replace(/\.(mdx)$/, '');
   const parts = basePath.split('/');
   const dirName = parts[parts.length - 1] || 'Contracts';
   return dirName
@@ -335,7 +335,7 @@ module.exports.title = opts => {
 
 module.exports.description = opts => {
   const pageId = opts.data.root.id;
-  const basePath = pageId.replace(/\.(adoc|mdx)$/, '');
+  const basePath = pageId.replace(/\.(mdx)$/, '');
   const parts = basePath.split('/');
   const dirName = parts[parts.length - 1] || 'contracts';
   return `Smart contract ${dirName.replace('-', ' ')} utilities and implementations`;
